@@ -1,7 +1,7 @@
 import { RequestHandler, Request } from 'express'
 
 export type Create<I extends string | number, R> = (
-  body: R, req: Request<ParamsDictionary, any, any>
+  body: R, req: Request
 ) => Promise<R & { id: I }>
 
 export const create = <I extends string | number, R>(
