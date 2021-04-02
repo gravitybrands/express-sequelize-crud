@@ -16,7 +16,7 @@ export type Search<R> = (
   filter: Record<string, any>
 ) => Promise<{ rows: R[]; count: number }>
 
-export const getMany = <R>(
+export const getMany = <R, Request>(
   doGetFilteredList: GetList<R, Request>,
   doGetSearchList?: Search<R, Request>,
   filtersOption?: FiltersOption
