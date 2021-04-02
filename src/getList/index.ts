@@ -33,7 +33,7 @@ export const getMany = <R>(
         limit,
         offset,
         order,
-      })
+      }, req)
       setGetListHeaders(res, offset, count, rows.length)
       res.json(rows)
     } else {
@@ -42,7 +42,7 @@ export const getMany = <R>(
           error: 'Search has not been implemented yet for this resource',
         })
       }
-      const { rows, count } = await doGetSearchList(q, limit, filter)
+      const { rows, count } = await doGetSearchList(q, limit, filter, req)
       setGetListHeaders(res, offset, count, rows.length)
       res.json(rows)
     }
