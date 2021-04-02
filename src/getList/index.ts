@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express'
+import { RequestHandler, Request } from 'express'
 import mapValues from 'lodash/mapValues'
 
 import { setGetListHeaders } from './headers'
@@ -17,8 +17,8 @@ export type Search<R> = (
 ) => Promise<{ rows: R[]; count: number }>
 
 export const getMany = <R>(
-  doGetFilteredList: GetList<R>,
-  doGetSearchList?: Search<R>,
+  doGetFilteredList: GetList<R, Request>,
+  doGetSearchList?: Search<R, Request>,
   filtersOption?: FiltersOption
 ): RequestHandler => async (req, res, next) => {
   try {
