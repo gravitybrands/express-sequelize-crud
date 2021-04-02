@@ -8,7 +8,7 @@ export const getOne = <R>(doGetOne: GetOne<R>): RequestHandler => async (
   next
 ) => {
   try {
-    const record = await doGetOne(req.params.id)
+    const record = await doGetOne(req.params.id, req)
 
     if (!record) {
       return res.status(404).json({ error: 'Record not found' })
