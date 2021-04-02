@@ -1,7 +1,7 @@
-import { RequestHandler } from 'express'
+import { RequestHandler, Request } from 'express'
 import { GetOne } from './getOne'
 
-export type Update<R> = (id: string, data: R) => Promise<any>
+export type Update<R> = (id: string, data: R, req: Request) => Promise<any>
 
 export const update = <R>(
   doUpdate: Update<R>,
@@ -14,7 +14,7 @@ export const update = <R>(
       return res.status(404).json({ error: 'Record not found' })
     }
 
-    res.json(await doUpdate(req.params.id, req.body))
+    res.json(await doUpdate(req.params.id, req.body, req))
   } catch (error) {
     next(error)
   }
